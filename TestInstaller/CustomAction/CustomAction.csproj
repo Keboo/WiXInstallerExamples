@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net20</TargetFramework>
+		<Nullable>enable</Nullable>
+		<LangVersion>13</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="WixToolset.Dtf.CustomAction" Version="5.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="CustomAction.config" CopyToOutputDirectory="PreserveNewest" />
+		<None Include="testsub\testfile.txt" CopyToOutputDirectory="PreserveNewest" />
+		<CustomActionContents Include="testsub\SampleCAs.cs=$(OutputDirectory)testsub\testfile.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="System" />
+		<Using Include="System.Collections.Generic" />
+		<Using Include="System.IO" />
+	</ItemGroup>
+
+</Project>

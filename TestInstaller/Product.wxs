@@ -1,0 +1,32 @@
+﻿<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs" xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+  <Package Name="MyProduct" Language="1033" Version="1.0.0.0" Manufacturer="MyCompany" UpgradeCode="6D6E0131-559B-4A84-B8EE-3E113822188F">
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
+
+    <Feature Id="ProductFeature" Title="MyProduct" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+  
+      <StandardDirectory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="MyProduct" />
+      </StandardDirectory>
+    </Package>
+
+  <Fragment>
+    <DirectoryRef Id="INSTALLFOLDER">
+      <Component Id="MainExecutable" Guid="555D31C7-F369-49DA-8BCB-A7FCF82703BD">
+        <File Source="FileToInstall.txt" />
+      </Component>
+    </DirectoryRef>
+
+    <ComponentGroup Id="ProductComponents">
+      <ComponentRef Id="MainExecutable" />
+    </ComponentGroup>
+
+    <Binary Id="ReadmeFile" SourceFile="Readme.md" />
+
+    <UI>
+      <EmbeddedUI SourceFile="EmbeddedUI\bin\Debug\net462\EmbeddedUI.CA.dll" />
+    </UI>
+  </Fragment>
+</Wix>
